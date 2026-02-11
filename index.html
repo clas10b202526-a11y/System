@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina Presentation Viewer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Lumina<span>Viewer</span></div>
+        <div class="nav-links">
+            <a href="#" class="active">View</a>
+            <a href="#">About</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        
+        <header class="presentation-header">
+            <h1>Annual Strategy Report</h1>
+            <p>Interactive display of the Q4 financial and operational planning.</p>
+        </header>
+
+        <section class="viewer-stage">
+            <div class="viewer-wrapper">
+                <iframe id="ppt-frame" frameborder="0" allowfullscreen></iframe>
+                
+                <div id="loader" class="loader-overlay">
+                    <div class="spinner"></div>
+                    <p>Loading Slides...</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="controls">
+            <div class="input-group">
+                <input type="text" id="ppt-url" placeholder="Paste public .pptx link here..." value="https://file-examples.com/storage/fe8c7eef0c6364f6c9504cc/2017/02/file_example_PPT_250kB.ppt">
+                <button onclick="loadPresentation()">Load Presentation</button>
+            </div>
+            <p class="note">* Note: The PPT file must be hosted publicly (e.g., GitHub, Dropbox, or your server).</p>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
