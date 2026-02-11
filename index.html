@@ -3,47 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lumina Presentation Viewer</title>
+    <title>Presentation Viewer</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo">Lumina<span>Viewer</span></div>
-        <div class="nav-links">
-            <a href="#" class="active">View</a>
-            <a href="#">About</a>
-        </div>
-    </nav>
+    <div class="app-container">
+        <aside class="info-panel">
+            <div class="brand">
+                <div class="logo-icon">P</div>
+                <span>Presenter</span>
+            </div>
+            
+            <div class="details">
+                <h1 id="doc-title">Loading Title...</h1>
+                <p id="doc-desc">Interactive Web Presentation</p>
+                <a href="#" id="download-btn" class="download-link">Download Copy</a>
+            </div>
 
-    <main class="container">
-        
-        <header class="presentation-header">
-            <h1>Annual Strategy Report</h1>
-            <p>Interactive display of the Q4 financial and operational planning.</p>
-        </header>
+            <div class="footer">
+                <p>&copy; 2024 All Rights Reserved.</p>
+            </div>
+        </aside>
 
-        <section class="viewer-stage">
-            <div class="viewer-wrapper">
+        <main class="viewer-area">
+            <div class="viewer-frame">
                 <iframe id="ppt-frame" frameborder="0" allowfullscreen></iframe>
                 
-                <div id="loader" class="loader-overlay">
+                <div id="loader" class="loader">
                     <div class="spinner"></div>
-                    <p>Loading Slides...</p>
+                    <p>Rendering Slides...</p>
+                </div>
+
+                <div id="error-msg" class="error-state hidden">
+                    <h3>Unable to Load</h3>
+                    <p>To view this presentation, this website must be hosted online (GitHub Pages, Netlify, etc.) so the rendering engine can access the file.</p>
                 </div>
             </div>
-        </section>
-
-        <section class="controls">
-            <div class="input-group">
-                <input type="text" id="ppt-url" placeholder="Paste public .pptx link here..." value="https://file-examples.com/storage/fe8c7eef0c6364f6c9504cc/2017/02/file_example_PPT_250kB.ppt">
-                <button onclick="loadPresentation()">Load Presentation</button>
-            </div>
-            <p class="note">* Note: The PPT file must be hosted publicly (e.g., GitHub, Dropbox, or your server).</p>
-        </section>
-
-    </main>
+        </main>
+    </div>
 
     <script src="script.js"></script>
 </body>
