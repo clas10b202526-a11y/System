@@ -1,188 +1,167 @@
 :root {
-    --primary: #2563eb;
-    --primary-hover: #1d4ed8;
-    --bg-color: #f8fafc;
-    --surface: #ffffff;
-    --text-main: #1e293b;
-    --text-muted: #64748b;
-    --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+    --bg-dark: #0f172a;
+    --accent: #6366f1;
+    --text-light: #f8fafc;
+    --text-dim: #94a3b8;
+    --glass: rgba(255, 255, 255, 0.05);
+    --border: rgba(255, 255, 255, 0.1);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    line-height: 1.6;
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    height: 100vh;
+    overflow: hidden; /* Prevent scrolling on the body */
 }
 
-/* Navbar */
-.navbar {
+.app-container {
     display: flex;
+    height: 100%;
+}
+
+/* Sidebar */
+.info-panel {
+    width: 300px;
+    background: var(--glass);
+    border-right: 1px solid var(--border);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    backdrop-filter: blur(10px);
+}
+
+.brand {
+    display: flex;
     align-items: center;
-    padding: 1.5rem 5%;
-    background: var(--surface);
-    border-bottom: 1px solid #e2e8f0;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 1.2rem;
 }
 
-.logo {
-    font-weight: 600;
-    font-size: 1.5rem;
-    color: var(--text-main);
+.logo-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
 }
 
-.logo span {
-    color: var(--primary);
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-muted);
-    margin-left: 2rem;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-.nav-links a.active, .nav-links a:hover {
-    color: var(--primary);
-}
-
-/* Container */
-.container {
-    max-width: 1000px;
-    margin: 3rem auto;
-    padding: 0 20px;
-}
-
-.presentation-header {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.presentation-header h1 {
-    font-weight: 600;
+.details h1 {
     font-size: 2rem;
+    line-height: 1.1;
     margin-bottom: 0.5rem;
+    background: linear-gradient(to right, #fff, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.presentation-header p {
-    color: var(--text-muted);
+.details p {
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+    font-weight: 300;
 }
 
-/* Viewer Stage (The Aspect Ratio Hack) */
-.viewer-stage {
-    background: var(--surface);
-    padding: 10px;
-    border-radius: 16px;
-    box-shadow: var(--shadow);
+.download-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    transition: all 0.3s;
 }
 
-.viewer-wrapper {
+.download-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.footer p {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+}
+
+/* Main Viewer */
+.viewer-area {
+    flex: 1;
     position: relative;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+}
+
+.viewer-frame {
     width: 100%;
-    /* 16:9 Aspect Ratio (9 / 16 = 0.5625) */
-    padding-bottom: 56.25%; 
-    background: #000;
-    border-radius: 12px;
+    max-width: 1200px;
+    /* Maintain 16:9 Aspect Ratio within the flex container */
+    aspect-ratio: 16 / 9;
+    background: black;
+    border-radius: 16px;
     overflow: hidden;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border);
 }
 
 iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    border: none;
 }
 
 /* Loader */
-.loader-overlay {
+.loader {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--surface);
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #1e293b;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     z-index: 10;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.5s;
 }
 
 .spinner {
     width: 40px;
     height: 40px;
-    border: 4px solid #e2e8f0;
-    border-top: 4px solid var(--primary);
+    border: 3px solid rgba(255,255,255,0.1);
+    border-top-color: var(--accent);
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin-bottom: 1rem;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.hide-loader {
+.hidden {
     opacity: 0;
     pointer-events: none;
 }
 
-/* Controls */
-.controls {
-    margin-top: 3rem;
+.error-state {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
+    background: rgba(255, 0, 0, 0.1);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 0, 0, 0.3);
 }
 
-.input-group {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    max-width: 600px;
-    margin: 0 auto;
-}
+@keyframes spin { to { transform: rotate(360deg); } }
 
-input[type="text"] {
-    flex: 1;
-    padding: 12px 20px;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
-    font-family: inherit;
-    outline: none;
-    transition: border-color 0.3s;
-}
-
-input[type="text"]:focus {
-    border-color: var(--primary);
-}
-
-button {
-    padding: 12px 24px;
-    background-color: var(--primary);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: var(--primary-hover);
-}
-
-.note {
-    margin-top: 1rem;
-    font-size: 0.85rem;
-    color: var(--text-muted);
+/* Mobile Response */
+@media (max-width: 768px) {
+    .app-container { flex-direction: column; overflow: auto; }
+    .info-panel { width: 100%; padding: 1.5rem; }
+    .viewer-area { padding: 1rem; height: 60vh; }
 }
